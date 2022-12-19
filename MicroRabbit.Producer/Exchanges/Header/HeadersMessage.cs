@@ -21,6 +21,8 @@ namespace RabbitMQ.Producer.Exchanges.Headers
             //Create Connection
             using var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
+
+            //First Message*****************
             var props = channel.CreateBasicProperties();
             var map1 = new Dictionary<string, object>();
             map1.Add("First", "A");
@@ -30,6 +32,7 @@ namespace RabbitMQ.Producer.Exchanges.Headers
             channel.BasicPublish(HeadersExchange.EXCHANGE_NAME, "", props, Message1.GetBytes());
             Console.Write(" Message Sent '" + Message1 + "'");
 
+            //Second Message*****************
             props = channel.CreateBasicProperties();
             var map2 = new Dictionary<string, object>();
             map2.Add("Third", "C");
@@ -39,6 +42,7 @@ namespace RabbitMQ.Producer.Exchanges.Headers
             channel.BasicPublish(HeadersExchange.EXCHANGE_NAME, "", props, Message2.GetBytes());
             Console.Write(" Message Sent '" + Message2 + "'");
 
+            //Third Message*******************
             props = channel.CreateBasicProperties();
             var map3 = new Dictionary<string, object>();
             map3.Add("First", "A");

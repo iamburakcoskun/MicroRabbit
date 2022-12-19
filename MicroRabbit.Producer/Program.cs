@@ -4,7 +4,7 @@ using RabbitMQ.Client;
 
 Console.WriteLine("Hello, World!");
 
-var exhangeFactory = CreateSendMessageAndExchange.CreateExchange(ExchangeType.Direct);
+var exhangeFactory = CreateSendMessageAndExchange.CreateExchange(ExchangeType.Headers);
 exhangeFactory.CreateExchange();
-var producer = CreateSendMessageAndExchange.CreateSendMessage(ExchangeType.Direct);
+var producer = CreateSendMessageAndExchange.CreateSendMessage(ExchangeType.Headers);
 producer.SendMessage();
