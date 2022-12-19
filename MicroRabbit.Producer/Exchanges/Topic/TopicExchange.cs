@@ -29,6 +29,32 @@ namespace RabbitMQ.Producer.Exchanges.Topic
             using var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
             channel.ExchangeDeclare(EXCHANGE_NAME, ExchangeType.Topic, true);
+
+            #region Topic Exchange
+            channel.QueueDeclare(QUEUE_NAME_1,
+                 durable: false, //Data fiziksel olarak mý yoksa memoryde mi tutulsun
+                    exclusive: false, //Baþka connectionlarda bu kuyruða ulaþabilsin mi
+                    autoDelete: false, //Eðer kuyruktaki son mesaj ulaþtýðýnda kuyruðun silinmesini istiyorsak kullanýlýr.
+                    arguments: null);//Exchangelere verilecek olan parametreler tanýmlamak için kullanýlýr.
+
+            channel.QueueBind(QUEUE_NAME_1, EXCHANGE_NAME, ROUTING_PATTERN_1);
+
+            channel.QueueDeclare(QUEUE_NAME_2,
+                 durable: false, //Data fiziksel olarak mý yoksa memoryde mi tutulsun
+                    exclusive: false, //Baþka connectionlarda bu kuyruða ulaþabilsin mi
+                    autoDelete: false, //Eðer kuyruktaki son mesaj ulaþtýðýnda kuyruðun silinmesini istiyorsak kullanýlýr.
+                    arguments: null);//Exchangelere verilecek olan parametreler tanýmlamak için kullanýlýr.
+
+            channel.QueueBind(QUEUE_NAME_2, EXCHANGE_NAME, ROUTING_PATTERN_2);
+
+            channel.QueueDeclare(QUEUE_NAME_3,
+                 durable: false, //Data fiziksel olarak mý yoksa memoryde mi tutulsun
+                    exclusive: false, //Baþka connectionlarda bu kuyruða ulaþabilsin mi
+                    autoDelete: false, //Eðer kuyruktaki son mesaj ulaþtýðýnda kuyruðun silinmesini istiyorsak kullanýlýr.
+                    arguments: null);//Exchangelere verilecek olan parametreler tanýmlamak için kullanýlýr.
+
+            channel.QueueBind(QUEUE_NAME_3, EXCHANGE_NAME, ROUTING_PATTERN_3);
+            #endregion
         }
     }
 
